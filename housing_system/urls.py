@@ -36,7 +36,10 @@ urlpatterns = [
     path('monitoring/', include(('monitoring.urls', 'monitoring'), namespace='monitoring')),
     # تطبيق العناية والرفاهية
     path('wellness/', include(('wellness.urls', 'wellness'), namespace='wellness')),
-    
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
 ]
 
 # ربط ملفات الميديا
