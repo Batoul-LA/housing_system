@@ -1,0 +1,17 @@
+<h2>قائمة الكاميرات</h2>
+<ul>
+  {% for camera in cameras %}
+    <li>
+      {{ camera.room.number }} - {{ camera.location }} ({{ camera.get_status_display }})
+      <ul>
+        {% for record in camera.records.all %}
+          <li>
+            تسجيل: {{ record.start_time }} → {{ record.end_time }}
+            <a href="{% url 'monitoring:record_detail' record.id %}">تفاصيل</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'monitoring:add_camera' %}">إضافة كاميرا جديدة</a>

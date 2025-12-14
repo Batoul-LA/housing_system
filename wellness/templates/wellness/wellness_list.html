@@ -1,0 +1,28 @@
+<h2>قائمة تفقدات الغرف</h2>
+<table>
+  <thead>
+    <tr>
+      <th>الغرفة</th>
+      <th>الموظف</th>
+      <th>التاريخ</th>
+      <th>ملاحظات أمنية</th>
+      <th>ملاحظات صيانة</th>
+      <th>بحاجة صيانة؟</th>
+      <th>متابعة لاحقة؟</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for check in checks %}
+    <tr>
+      <td>{{ check.room.number }}</td>
+      <td>{{ check.employee.full_name }}</td>
+      <td>{{ check.inspection_date }}</td>
+      <td>{{ check.security_notes|default:"-" }}</td>
+      <td>{{ check.maintenance_notes|default:"-" }}</td>
+      <td>{{ check.needs_maintenance|yesno:"نعم,لا" }}</td>
+      <td>{{ check.follow_up_required|yesno:"نعم,لا" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'wellness:add_wellness_check' %}">إضافة فحص جديد</a>

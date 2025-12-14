@@ -1,0 +1,41 @@
+<h2>قائمة الحجوزات</h2>
+<table>
+  <thead>
+    <tr>
+      <th>الطالب</th>
+      <th>الغرفة</th>
+      <th>تاريخ البداية</th>
+      <th>تاريخ النهاية</th>
+      <th>QR</th>
+      <th>الدفعات</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.student.first_name }} {{ booking.student.last_name }}</td>
+      <td>{{ booking.room.number }}</td>
+      <td>{{ booking.start_date }}</td>
+      <td>{{ booking.end_date }}</td>
+      <td>
+        {% if booking.qr %}
+          <a href="{% url 'generate_qr' booking.qr.id %}">عرض QR</a>
+        {% else %}
+          لا يوجد QR
+        {% endif %}
+      </td>
+      <td>
+        {% if booking.payments.all %}
+          <ul>
+            {% for payment in booking.payments.all %}
+            <li>{{ payment.amount }} - {{ payment.get_status_display }} - {{ payment.paid_at }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <a href="{% url 'add_payment' booking.id %}">إضافة دفع</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

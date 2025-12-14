@@ -1,0 +1,7 @@
+<h2>تفاصيل التسجيل</h2>
+<p>الكاميرا: {{ record.camera.location }}</p>
+<p>من: {{ record.start_time }}</p>
+<p>إلى: {{ record.end_time }}</p>
+<p>الوصف: {{ record.description }}</p>
+<video src="{{ record.video.url }}" controls></video>
+<a href="{% url 'monitoring:record_list' %}">رجوع</a>

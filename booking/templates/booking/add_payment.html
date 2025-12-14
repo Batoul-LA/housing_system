@@ -1,0 +1,6 @@
+<h2>إضافة دفع للحجز رقم {{ booking.id }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">حفظ الدفع</button>
+</form>

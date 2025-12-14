@@ -1,0 +1,7 @@
+<h2>هل أنت متأكد من حذف هذا التسجيل؟</h2>
+<p>{{ record.camera.location  }} | {{ record.start_time }} → {{ record.end_time }}</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">تأكيد الحذف</button>
+</form>
+<a href="{% url 'monitoring:record_list' %}">إلغاء</a>

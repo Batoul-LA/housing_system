@@ -1,0 +1,11 @@
+<h2>قائمة التسجيلات</h2>
+<ul>
+  {% for record in records %}
+    <li>
+      {{ record.camera.location }} | {{ record.start_time }} → {{ record.end_time }}
+      <a href="{% url 'monitoring:record_detail' record.id %}">تفاصيل</a>
+      <a href="{% url 'monitoring:record_delete' record.id %}">حذف</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'monitoring:record_create' %}">إضافة تسجيل جديد</a>
